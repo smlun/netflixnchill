@@ -54,3 +54,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Additional gems required for this project
 gem 'ffaker'
+gem 'slim-rails'
+gem 'bootstrap-sass'
