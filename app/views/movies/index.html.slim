@@ -1,0 +1,14 @@
+h1 Show all movies on this page
+.container
+  .row
+  - @movies.each do |movie|
+    .col-sm-4
+      .thumbnail style="display: inline-block; height: 550px;"
+        img.img-thumbnail src="http://placehold.it/242x200/ff69B4/00000"
+        .caption
+          blockquote = number_to_currency movie.price
+          h3 = movie.starring
+          p = movie.title
+          p = movie.description
+        .btn.btn-primary style="position: absolute; right: 115px; bottom: 25px;" = link_to "Buy Now!", movie_path(movie)
+        

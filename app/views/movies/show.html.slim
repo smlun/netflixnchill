@@ -1,0 +1,16 @@
+h1 Show clicked movie
+
+/ TODO - Show preview video
+/ .embed-responsive.embed-responsive-16by9
+/  .iframe.embed-responsive-item src="#{FFaker::Youtube.embed_url}"
+.col-sm-4
+  img src="http://placehold.it/300x500/ff69B4/00000"
+.col-sm-8
+  h2 = @movie.title
+  br
+  h1 = @movie.starring
+  br
+  p = @movie.description
+  br
+  = number_to_currency @movie.price
+ 
