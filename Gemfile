@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'ffaker'
 gem 'slim-rails'
 gem 'bootstrap-sass'
+gem 'kaminari'
