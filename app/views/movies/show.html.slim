@@ -13,4 +13,8 @@ h1 Show clicked movie
   p = @movie.description
   br
   = number_to_currency @movie.price
+
+
+= form_for [@movie, Order.new], method: :post do
+script src="https://checkout.stripe.com/checkout.js" class="stripe-button", data-key="pk_test_OBXLrD24X5DPN0ggATyMFwXG", data-amount= @product.price*100, data-name="Alpha Store", data-description= @product.name, data-image="https://stripe.com/img/documentation/checkout/marketplace.png", data-locale="auto"
  
