@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-default" style="background-color:#9999ff">
+      <h1><%= link_to "NetflixNChill", movies_path %></h1>
+      <%- if user_signed_in? %>
+        <button type="button" class="btn btn-warning pull-right"><%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
+      <%- else %>
+        <button type="button" class="btn btn-primary pull-right"><%= link_to 'Sign Up', new_user_session_path %></button>
+        <button type="button" class="btn btn-info pull-right"><%= link_to 'Register', new_user_registration_path %></button>
+      <% end %>
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
