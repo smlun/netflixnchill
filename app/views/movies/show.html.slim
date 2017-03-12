@@ -21,6 +21,9 @@ h1 Show clicked movie
     = number_to_currency @movie.price
   p
 
-
-= form_for [@movie, Order.new], method: :post do
-  script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf", data-amount=#{@movie.price*100}, data-name="NetflixNChill", data-description=#{@movie.title}, data-image="https://stripe.com/img/documentation/checkout/marketplace.png", data-locale="auto"
+- if user_signed_in?
+  = form_for [@movie, Order.new], method: :post do
+  script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf" data-amount=@movie.price*100*0.85 data-name="NetflixNChill" data-description=@movie.title data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
+- else
+  = form_for [@movie, Order.new], method: :post do
+  script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf" data-amount=@movie.price*100 data-name="NetflixNChill" data-description=@movie.title data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
