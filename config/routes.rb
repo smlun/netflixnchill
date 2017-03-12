@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  root 'movies#index'
+  root 'movies#disclaimer'
 end
