@@ -6,7 +6,10 @@ h1 Show all movies on this page
       .thumbnail style="display: inline-block; height: 550px;"
         img.img-thumbnail src="http://placehold.it/242x200/ff69B4/00000"
         .caption
-          blockquote = number_to_currency movie.price
+          - if user_signed_in?
+            blockquote = number_to_currency movie.price*0.85
+          - else
+            blockquote = number_to_currency movie.price
           h3 = movie.starring
           p = movie.title
           p = movie.description

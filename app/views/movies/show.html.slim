@@ -12,9 +12,15 @@ h1 Show clicked movie
   br
   p = @movie.description
   br
-  = number_to_currency @movie.price
+  - if user_signed_in?
+    i 15% OFF storewide for all members!
+    br
+    s = number_to_currency @movie.price
+    b = number_to_currency @movie.price*0.85
+  - else
+    = number_to_currency @movie.price
+  p
 
 
 = form_for [@movie, Order.new], method: :post do
-script src="https://checkout.stripe.com/checkout.js" class="stripe-button", data-key="pk_test_OBXLrD24X5DPN0ggATyMFwXG", data-amount= @product.price*100, data-name="Alpha Store", data-description= @product.name, data-image="https://stripe.com/img/documentation/checkout/marketplace.png", data-locale="auto"
- 
+  script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf", data-amount=#{@movie.price*100}, data-name="NetflixNChill", data-description=#{@movie.title}, data-image="https://stripe.com/img/documentation/checkout/marketplace.png", data-locale="auto"
