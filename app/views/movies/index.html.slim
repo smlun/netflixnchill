@@ -15,5 +15,4 @@ h1 Show all movies on this page
           p = movie.description
         .btn.btn-primary style="position: absolute; right: 115px; bottom: 25px;" = link_to "Buy Now!", movie_path(movie)
 
-/ TODO BOOTSTRAP WITH PAGINATOR HAMLS FILES    
 .row style="display: block; margin: auto; width: 70%" = paginate @movies
