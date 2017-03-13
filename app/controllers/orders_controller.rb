@@ -15,14 +15,14 @@ class OrdersController < ApplicationController
     customer_email = params[:stripeEmail]
     Stripe.api_key = "sk_test_L3iQjnqaaxHzHVBzXsgLmR7e"
     Stripe::Charge.create(
-    amount: @movie.price*100,
+    amount: (@movie.price*100).to_i,
     currency: "usd",
     source: stripe_token
     )
 
     @order.save
       #send email
-      # redirect_to @movie, notice: 'Your order has been placed!'
+    redirect_to @movie, notice: 'Your order has been placed!'
   end
 
   private
