@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     )
 
     @order.save
-      #send email
+    #send email
     redirect_to @movie, notice: 'Your order has been placed!'
   end
 

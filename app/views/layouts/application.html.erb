@@ -10,14 +10,14 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default" style="background-color:#9999ff">
-      <h1><%= link_to "NetflixNChill", movies_path %></h1>
+    <nav class="navbar navbar-default navbar-static-top" style="background-color:#9999ff">
+      <%= link_to "NetflixNChill", movies_path, style:"font-size: 250%;"%>
       <%- if user_signed_in? %>
-        <p>Thank you for signing in, here's a 15% OFF storewide discount on us!</p>
-        <button type="button" class="btn btn-warning pull-right"><%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
+      <p>Thank you for signing in, here's 15% OFF storewide on us!</p>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-danger" %>
       <%- else %>
-        <button type="button" class="btn btn-primary pull-right"><%= link_to 'Sign Up', new_user_session_path %></button>
-        <button type="button" class="btn btn-info pull-right"><%= link_to 'Register', new_user_registration_path %></button>
+      <%= link_to 'Login', new_user_session_path, class:"btn btn-primary" %>
+      <%= link_to 'Register', new_user_registration_path, class:"btn btn-info" %>
       <% end %>
     </nav>
     <p class="notice"><%= notice %></p>
