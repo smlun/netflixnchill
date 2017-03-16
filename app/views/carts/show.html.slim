@@ -1,0 +1,25 @@
+h1 Current items in cart:
+
+.col-xs-6
+  table.table.table-hover
+    thead
+      tr
+        th Title
+        th Qty.
+        th Price
+    tbody
+      - @cart.orders.each do |order|
+        tr
+          td = order.movie.title
+          td = order.quantity
+          td = order.movie.price
+  strong.pull-right = @total
+
+  = form_for @cart, method: :patch do
+    script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
+      data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf" 
+      data-amount= @total
+      data-name="NetflixNChill"
+      data-description="ok cool"
+      data-image="https://stripe.com/img/documentation/checkout/marketplace.png" 
+      data-locale="auto"
