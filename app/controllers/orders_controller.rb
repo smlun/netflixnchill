@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
     else
       @cart = Cart.create(user_id: current_user.id)
     end
+
   end
 
   def new
@@ -23,19 +24,13 @@ class OrdersController < ApplicationController
       @cart = Cart.create(user_id: current_user.id)
     end
 
-    @order = Order.new(movie_id: params[:movie_id], quantity: params[:order][:quantity], cart_id: @cart.id)
-    # stripe_token = params[:stripeToken]
-    # payment_type = params[:stripeTokenType]
-    # customer_email = params[:stripeEmail]
-    # Stripe.api_key = "sk_test_L3iQjnqaaxHzHVBzXsgLmR7e"
-    # Stripe::Charge.create(
-    # amount: (@movie.price*100).to_i,
-    # currency: "usd",
-    # source: stripe_token
-    # )
-    # @order.save
-    # #send email
-    # redirect_to @movie, notice: 'Your order has been placed!'
+    if Order.find_by(movie_id: @movie)
+      @order = Order.find_by(movie_id: @movie)
+      @order.quantity += params[:order][:quantity].to_i
+    else
+      @order = Order.new(movie_id: params[:movie_id], quantity: params[:order][:quantity], cart_id: @cart.id)
+    end
+
     if @order.save
       redirect_to movies_path
       flash[:notice] = "Successfully added to cart!"
