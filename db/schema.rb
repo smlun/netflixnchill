@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312095032) do
+ActiveRecord::Schema.define(version: 20170316015422) do
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_carts_on_order_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -26,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170312095032) do
     t.integer  "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "quantity"
     t.index ["movie_id"], name: "index_orders_on_movie_id"
   end
 
