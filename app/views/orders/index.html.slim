@@ -1,0 +1,24 @@
+/ .col-xs-6
+/   table.table.table-hover
+/     thead
+/       tr
+/         th Title
+/         th Qty.
+/         th Price
+/     tbody
+/       - @orders.each do |order|
+/         tr
+/           td = order.movie.title
+/           td = order.quantity
+/           td = order.movie.price
+/           
+/ / = form_for @order, pay_cart_path(:id => 1) do
+/ /   script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
+/ /     data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf" 
+/ /     data-amount=876876876
+/ /     data-name="NetflixNChill"
+/ /     data-description=order.movie.title
+/ /     data-image="https://stripe.com/img/documentation/checkout/marketplace.png" 
+/ /     data-locale="auto"
+/     
+/ = link_to "Make Payment", pay_cart_path(@cart)
