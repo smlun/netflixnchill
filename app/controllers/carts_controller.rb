@@ -16,7 +16,6 @@ class CartsController < ApplicationController
     @user = current_user
     @cart = Cart.new(user_id: @user.id)
 
-
     @order.save
     #send email
     redirect_to @movie, notice: 'Your order has been placed!'
@@ -30,7 +29,7 @@ class CartsController < ApplicationController
     customer_email = params[:stripeEmail]
     Stripe.api_key = "sk_test_L3iQjnqaaxHzHVBzXsgLmR7e"
     Stripe::Charge.create(
-    amount: @cart.calculate_total,
+    amount: (@cart.calculate_total*100).to_i,
     currency: "usd",
     source: stripe_token
     )

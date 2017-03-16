@@ -16,10 +16,5 @@ h1 Current items in cart:
   strong.pull-right = @total
 
   = form_for @cart, method: :patch do
-    script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
-      data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf" 
-      data-amount= @total
-      data-name="NetflixNChill"
-      data-description="ok cool"
-      data-image="https://stripe.com/img/documentation/checkout/marketplace.png" 
-      data-locale="auto"
+    script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_5V8oBBoCyQUzh9q7ZzXIxmXf" data-amount=@total*100 data-name="NetflixNChill" data-description="ok cool" data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
+    / = render partial: "stripe_button", locals: {total_price: @total}
