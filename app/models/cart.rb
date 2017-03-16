@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
   has_many :orders
 
   def calculate_total
-    amount = 0
+    amount = 0.0
     self.orders.each do |order|
       amount += order.movie.price
     end
