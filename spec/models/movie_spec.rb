@@ -10,4 +10,8 @@ RSpec.describe Movie, type: :model do
     it { should validate_presence_of(:description) }
   end
 
+  describe Movie do
+    it { should have_many(:orders) }
+  end
+
 end
