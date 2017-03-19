@@ -1,15 +1,17 @@
 # == Schema Information
 #
-# Table name: carts
+# Table name: line_items
 #
 #  id         :integer          not null, primary key
-#  paid       :boolean          default("f")
+#  cart_id    :integer
+#  movie_id   :integer
+#  quantity   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'rails_helper'
 
-RSpec.describe Cart, type: :model do
+RSpec.describe LineItem, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

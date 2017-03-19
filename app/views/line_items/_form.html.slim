@@ -1,0 +1,4 @@
+= bootstrap_form_for [@cart, @line_item] do |f|
+  = f.hidden_field :movie_id
+  = f.number_field :quantity, min: '1', max: '99'
+  = f.submit "Add to Cart"
