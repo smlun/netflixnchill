@@ -66,3 +66,4 @@ gem 'rspec-rails'
 gem 'simplecov', :require => false, :group => :test
 gem 'rails-controller-testing'
 gem 'metric_fu', git: 'https://github.com/bergholdt/metric_fu.git'
+gem "annotate"
