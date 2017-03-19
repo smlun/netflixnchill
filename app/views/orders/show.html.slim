@@ -1,0 +1,16 @@
+h1 This is the receipt
+
+.col-xs-6
+  table.table.table-hover
+    thead
+      tr
+        th Title
+        th Qty.
+        th Price
+    tbody
+      - @cart.line_items.each do |f|
+        tr
+          td = f.movie.title
+          td = f.quantity
+          td = f.movie.price
+  strong.pull-right = @total

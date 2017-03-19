@@ -20,6 +20,9 @@
       <%= link_to 'Login', new_user_session_path, class:"btn btn-primary" %>
       <%= link_to 'Register', new_user_registration_path, class:"btn btn-info" %>
       <% end %>
+      <!-- Should show only if cart exists -->
+      <%= link_to 'Checkout', cart_path(session[:cart_id]), class:"btn btn-info" if session[:cart_id]%>
+
     </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

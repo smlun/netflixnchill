@@ -20,7 +20,7 @@ h1 Show clicked movie
   - else
     = number_to_currency @movie.price
   p
-  = render 'orders/form'
+  = render 'line_items/form'
 
 / This is the stripe pay button
 / = form_for [@movie, Order.new], method: :post do

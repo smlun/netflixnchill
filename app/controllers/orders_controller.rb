@@ -1,40 +1,30 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.all
-    @order = Order.new
-
-    if Cart.find_by(user_id: current_user.id)
-      @cart = Cart.find_by(user_id: current_user.id)
-    else
-      @cart = Cart.create(user_id: current_user.id)
-    end
-
   end
 
-  def new
-    @order = Order.new
+  def show
+    @order = Order.find(params[:id])
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
+    @cart = Cart.find(session[:cart_id])
+    stripe_token = params[:stripeToken]
+    payment_type = params[:stripeTokenType]
+    customer_email = params[:stripeEmail]
+    Stripe.api_key = "sk_test_L3iQjnqaaxHzHVBzXsgLmR7e"
+    Stripe::Charge.create(
+    amount: (@cart.calculate_total*100).to_i,
+    currency: "usd",
+    source: stripe_token
+    )
+    # add cart id to the order
+    # save the order
+    @order = Order.create(cart_id: @cart)
+    # clear the session
+    session.clear
+    # redirect to reciept page
+    redirect_to order_path(@order)
 
-    if Cart.find_by(user_id: current_user.id)
-      @cart = Cart.find_by(user_id: current_user.id)
-    else
-      @cart = Cart.create(user_id: current_user.id)
-    end
-
-    if Order.find_by(movie_id: @movie)
-      @order = Order.find_by(movie_id: @movie)
-      @order.quantity += params[:order][:quantity].to_i
-    else
-      @order = Order.new(movie_id: params[:movie_id], quantity: params[:order][:quantity], cart_id: @cart.id)
-    end
-
-    if @order.save
-      redirect_to movies_path
-      flash[:notice] = "Successfully added to cart!"
-    end
   end
 
   private
