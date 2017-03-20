@@ -5,9 +5,7 @@ class LineItemsController < ApplicationController
     movie_id = params[:line_item][:movie_id].to_i
     quantity = params[:line_item][:quantity].to_i
     @cart.stack_to_cart(movie_id, quantity)
-    puts "@cart: #{@cart.id}"
-    puts "MOVIE ID: #{movie_id}"
-    puts "QUANTITY: #{quantity}"
+
     redirect_to movies_path, notice: "Successfully added to cart!"
   end
 
