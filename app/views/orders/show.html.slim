@@ -8,7 +8,7 @@ h1 This is the receipt
         th Qty.
         th Price
     tbody
-      - @cart.line_items.each do |f|
+      - @order.cart.line_items.each do |f|
         tr
           td = f.movie.title
           td = f.quantity
