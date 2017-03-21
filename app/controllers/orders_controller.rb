@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   def create
     @cart = Cart.find(session[:cart_id])
-    Order.stripe_payment(@cart, params)
+    StripeService.stripe_payment(@cart, params)
     @order = Order.create(cart_id: @cart.id)
     @cart.paid = true
     session.clear
